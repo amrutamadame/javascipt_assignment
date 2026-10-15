@@ -35,17 +35,17 @@ console.log(getEventWeekday(3));
 //Weather wear
 
 function clothsToWear(temp) {
-  if (temp <= 0) {
-    return `Winter clothes, scarf, woolen caps and winter shoes.`;
-  } else if (temp > 0 && temp <= 10) {
-    return `Jackets and thick clothes.`;
-  } else if (temp > 10 && temp <= 20) {
-    return `Light clothes.`;
-  } else {
+  if (temp > 20) {
     return `T-shirt and shorts.`;
+  } else if (temp > 10) {
+    return `Light clothes.`;
+  } else if (temp > 0) {
+    return `Jackets and thick clothes.`;
+  } else {
+    return `Winter clothes, scarf, woolen caps and winter shoes.`;
   }
 }
-console.log(clothsToWear(-5));
+console.log(clothsToWear(25));
 
 //Student manager
 
@@ -56,7 +56,10 @@ function addStudentToClass(studentName) {
     console.log(`Can not add empty string to class.`);
   } else if (class07Students.includes(studentName)) {
     console.log(`Student ${studentName} is already in the class.`);
-  } else if (class07Students.length < 6 || studentName === "Queen Mary") {
+  } else if (
+    class07Students.length < 6 ||
+    studentName.toLowerCase() == "queen mary"
+  ) {
     class07Students.push(studentName);
   } else {
     console.log(`Cannot add more students to class 07`);
