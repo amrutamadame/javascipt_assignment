@@ -29,7 +29,7 @@ const travelInformation = {
 };
 
 function calculateTime(travelInformation) {
-  if (travelInformation.speed <= 0) return "Speed must be greater than 0";
+  if (travelInformation.speed === 0) return "Speed must be greater than 0";
 
   const hrsInDecimal =
     travelInformation.destinationDistance / travelInformation.speed;
@@ -66,6 +66,13 @@ const seriesDurations = [
 
 function logOutSeriesText() {
   // write code here
+  seriesDurations.push({
+    title: "Lost In Space",
+    days: 5,
+    hours: 10,
+    minutes: 30,
+  });
+
   const totalLifeSpanInMins = 80 * 365 * 24 * 60;
 
   let totalPercentage = 0;
@@ -78,7 +85,7 @@ function logOutSeriesText() {
 
     const percentage = (totalSeriesMins / totalLifeSpanInMins) * 100;
 
-    totalPercentage = totalPercentage + percentage;
+    totalPercentage += percentage;
 
     console.log(
       `${seriesDurations[i].title} took ${percentage.toFixed(3)}% of my life`,
@@ -107,13 +114,13 @@ console.log(notes);
 
 //Get a note
 function getNote(id) {
-  if (typeof id !== "number" || id === "") {
+  if (typeof id !== "number") {
     return `id must be a number`;
-  }
-
-  for (let i = 0; i < notes.length; i++) {
-    if (id === notes[i].id) {
-      return notes[i];
+  } else {
+    for (let i = 0; i < notes.length; i++) {
+      if (id === notes[i].id) {
+        return notes[i];
+      }
     }
   }
 }
@@ -154,7 +161,7 @@ const limit = 30;
 
 function addActivity(date, activity, duration) {
   activities.push({ date, activity, duration });
-  totalTime = totalTime + duration;
+  totalTime += duration;
   return activities;
 }
 
@@ -165,7 +172,7 @@ console.log(activities);
 //Show my status
 function showStatus(activities) {
   if (activities.length === 0) {
-    console.log(`Add some activities before calling showStatus`);
+    return `Add some activities before calling showStatus`;
   } else {
     console.log(
       `You have added ${activities.length} activities. They amount to ${totalTime} min. of usage`,
